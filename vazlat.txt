@@ -1,0 +1,64 @@
+A SING-SING BÖRTÖNÜZEMELTETŐ ALKALMAZÁS
+=======================================
+=======================================
+
+ADATBÁZIS MODELL
+================
+
+ - admin: nev, szigszam (PK), felhasznalonev, jelszo
+ - rab: nev, szigszam (PK), bekerulesdatuma, buntetesiido, cellaszam (FK)
+ - cella: cellaszam (PK), maximalisferohely, szabadferohely
+
+ALKALMAZÁS BEANEK
+=================
+
+ - UserManager
+	checkLogin(felhasznalonev, password) { bool }
+	setLoginParameters(felhasznalonev, password)
+
+ - RabManager
+	addRab(Nev, Szigszam, BuntetesiIdo, Cellaszam) { bool }
+	setRabBuntetesiIdo(Nev, Szigszam, BuntetesiIdo)
+	setRabCella(Nev, Szigszam, Cellaszam) { bool }
+	getSzabadulasokAt(Date) { array<Nev, Szigszam> }
+	getSzabadulasokAtInterval(FromDate, ToDate) { array<Nev, Szigszam> }
+
+ - CellaManager
+	addCella(MaximalisFerohely, Szabadferohely)
+	getCellaData(Cellaszam) { MaximalisFerohely, SzabadFerohely }
+	setCellaData(Cellaszam, MaximalisFerohely) { bool }
+	checkFoglaltsag() { array<Cellaszam, MaximalisFerohely, SzabadFerohely> }
+	checkFoglaltsagAt() { array<Cellaszam, MaximalisFerohely, SzabadFerohely> }
+	ujrarendez()
+
+DATA TRANSFER OBJECTEK
+======================
+
+ TBD
+
+
+=============================
+DB:
+	root
+	localhost:3306
+MySQL Username:
+	singsing
+Host:
+	localhost
+User role:
+	DB Admin
+password:
+	bortontoltelek11
+
+HOW TO START THE SERVER
+1.)
+	Win + R
+	run "services.msc"
+	find MySQL80
+	start it
+
+
+
+TODO:
+	rest/
+		MvcConfig.java
